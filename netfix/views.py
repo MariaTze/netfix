@@ -74,8 +74,8 @@ def customer_profile(request, name):
 
 
 @login_required
-def company_profile(request, name):
-    user = get_object_or_404(User, username=name, is_company=True)
+def company_profile(request, username):
+    user = get_object_or_404(User, username=username, is_company=True)
     company = get_object_or_404(Company, user=user)
     services = (
         Service.objects

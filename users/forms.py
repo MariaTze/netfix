@@ -98,7 +98,6 @@ class CompanySignUpForm(UserCreationForm):
         fields = (
             'username',
             'email',
-            'field_of_work',
             'password1',
             'password2',
         )
@@ -117,7 +116,7 @@ class CompanySignUpForm(UserCreationForm):
             user.save()
             Company.objects.create(
                 user=user,
-                field=self.cleaned_data['field_of_work']
+                field_of_work=self.cleaned_data['field_of_work']
             )
         return user
 
