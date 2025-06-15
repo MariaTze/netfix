@@ -1,0 +1,20 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+  <div class="form-container">
+    <h2>Log In</h2>
+    <form method="post" class="user-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Log In</button>
+    </form>
+    <p class="alternate-action">
+      Don’t have an account?
+      <a href="{% url 'users:register_customer' %}">Sign up as Customer</a> |
+      <a href="{% url 'users:register_company' %}">Sign up as Company</a>
+    </p>
+  </div>
+{% endblock %}

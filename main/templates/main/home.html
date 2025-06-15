@@ -1,0 +1,66 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Welcome to NetFix{% endblock %}
+
+{% block content %}
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Find &amp; Book Trusted Home Services</h1>
+      <p>From plumbing to painting, NetFix connects you with vetted professionals in seconds.</p>
+      <a href="{% url 'services:services_list' %}" class="btn-cta">Browse All Services</a>
+      <ul class="hero-nav">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <h2>Popular Categories</h2>
+    <div class="category-grid">
+      <a href="{% url 'services:services_field' 'plumbing' %}" class="category-card">
+        <img src="{% static 'images/plumbing.png' %}" alt="Plumbing Icon">
+        <span>Plumbing</span>
+      </a>
+      <a href="{% url 'services:services_field' 'painting' %}" class="category-card">
+        <img src="{% static 'images/painting.png' %}" alt="Painting Icon">
+        <span>Painting</span>
+      </a>
+      <a href="{% url 'services:services_field' 'electricity' %}" class="category-card">
+        <img src="{% static 'images/electricity.png' %}" alt="Electricity Icon">
+        <span>Electricity</span>
+      </a>
+      <a href="{% url 'services:services_field' 'housekeeping' %}" class="category-card">
+        <img src="{% static 'images/housekeeping.png' %}" alt="Housekeeping Icon">
+        <span>Housekeeping</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">1</div>
+        <h3>Choose a Service</h3>
+        <p>Browse our categories or search exactly what you need.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">2</div>
+        <h3>Select a Pro</h3>
+        <p>See ratings, pricing, and availability before you book.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">3</div>
+        <h3>Relax</h3>
+        <p>Our pros come to your door and get the job done right.</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

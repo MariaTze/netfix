@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Customer Registration{% endblock %}
+
+{% block content %}
+  <div class="form-container">
+    <h2>Sign up as Customer</h2>
+    <form method="post" class="user-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Register as Customer</button>
+    </form>
+    <p class="alternate-action">
+      Already registered?
+      <a href="{% url 'users:login_user' %}">Log In here</a>
+    </p>
+  </div>
+{% endblock %}

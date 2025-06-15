@@ -1,0 +1,52 @@
+{% load static %}
+<nav class="navbar">
+  <div class="navbar-inner">
+    <!-- Logo -->
+    <a href="{% url 'main:home' %}" class="logo-link">
+      <img src="{% static 'images/logo.png' %}" alt="NetFix Logo" class="site-logo">
+    </a>
+
+    <!-- Left Side Navigation Links -->
+    <ul class="nav-links-left">
+      <li><a href="{% url 'main:home' %}">Home</a></li>
+
+      <li class="dropdown">
+        <a href="{% url 'services:services_list' %}">Services</a>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'services:services_field' 'air-conditioner' %}">Air Conditioner</a></li>
+          <li><a href="{% url 'services:services_field' 'carpentry' %}">Carpentry</a></li>
+          <li><a href="{% url 'services:services_field' 'electricity' %}">Electricity</a></li>
+          <li><a href="{% url 'services:services_field' 'gardening' %}">Gardening</a></li>
+          <li><a href="{% url 'services:services_field' 'home-machines' %}">Home Machines</a></li>
+          <li><a href="{% url 'services:services_field' 'house-keeping' %}">House Keeping</a></li>
+          <li><a href="{% url 'services:services_field' 'interior-design' %}">Interior Design</a></li>
+          <li><a href="{% url 'services:services_field' 'locks' %}">Locks</a></li>
+          <li><a href="{% url 'services:services_field' 'painting' %}">Painting</a></li>
+          <li><a href="{% url 'services:services_field' 'plumbing' %}">Plumbing</a></li>
+          <li><a href="{% url 'services:services_field' 'water-heaters' %}">Water Heaters</a></li>
+        </ul>
+      </li>
+    </ul>
+
+      <!-- Right Side Navigation Links -->
+    <ul class="nav-links-right">
+      {% if user.is_authenticated %}
+        {% if user.is_customer %}
+          <li><a href="{% url 'users:customer_profile' user.username %}">Profile</a></li>
+        {% elif user.is_company %}
+          <li><a href="{% url 'users:company_profile' user.username %}">Profile</a></li>
+        {% endif %}
+        <li><a href="{% url 'main:logout' %}">Log Out</a></li>
+      {% else %}
+        <li><a href="{% url 'users:login_user' %}">Log In</a></li>
+        <li class="dropdown">
+          <a href="#">Register</a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'users:register_customer' %}">As Customer</a></li>
+            <li><a href="{% url 'users:register_company' %}">As Company</a></li>
+          </ul>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
