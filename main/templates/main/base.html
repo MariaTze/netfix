@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,7 +27,7 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="{% url 'main:home' %}">Home</a></li>
-            <li><a href="{% url 'services:services_list' %}">Services</a></li>
+            <li><a href="{% url 'services:service_list' %}">Services</a></li>
             {% if user.is_authenticated %}
               {% if user.is_customer %}
                 <li><a href="{% url 'users:customer_profile' user.username %}">My Profile</a></li>
