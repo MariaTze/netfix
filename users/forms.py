@@ -44,6 +44,7 @@ class CustomerSignUpForm(UserCreationForm):
         fields = (
             'username',
             'email',
+            'date_of_birth',
             'password1',
             'password2',
         )
@@ -62,7 +63,7 @@ class CustomerSignUpForm(UserCreationForm):
             user.save()
             Customer.objects.create(
                 user=user,
-                birthday=self.cleaned_data['date_of_birth']
+                birth=self.cleaned_data['date_of_birth']
             )
         return user
 
@@ -97,6 +98,7 @@ class CompanySignUpForm(UserCreationForm):
         fields = (
             'username',
             'email',
+            'field_of_work',
             'password1',
             'password2',
         )
@@ -121,12 +123,17 @@ class CompanySignUpForm(UserCreationForm):
 
 
 class UserLoginForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs['autocomplete'] = 'on'
+
     email = forms.EmailField(
-        widget=forms.TextInput(attrs={'placeholder': 'Enter Email', 'autocomplete': 'off'})
+        widget=forms.TextInput(attrs={'placeholder': 'Enter Email'})
     )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'placeholder': 'Enter Password'})
     )
+
 
     def clean(self):
         return super().clean()

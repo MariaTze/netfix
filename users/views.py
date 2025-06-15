@@ -1,5 +1,3 @@
-# netfix/users/views.py
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView
@@ -48,15 +46,22 @@ def LoginUserView(request):
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            user = authenticate(request, email=email, password=password)
-            if user is not None:
+            try:
+                tmp = User.objects.get(email=form.cleaned_data['email'])
+                user = authenticate(
+                    request,
+                    username=tmp.username,
+                    password=form.cleaned_data['password']
+                )
+            except User.DoesNotExist:
+                user = None
+            if user:
                 login(request, user)
                 return redirect('/')
+            # add a form-level error so it renders above the fields
+            form.add_error(None, "Invalid email or password.")
     else:
         form = UserLoginForm()
-
     return render(request, 'users/login.html', {'form': form})
 
 
@@ -66,19 +71,19 @@ def customer_profile(request, name):
     customer = get_object_or_404(Customer, user=user)
     # ServiceRequest model not yet implemented, so we pass an empty list
     service_requests = []
-    return render(request, 'users/customer_profile.html', {
+    return render(request, 'users/profile.html', {
         'customer': customer,
         'service_requests': service_requests,
     })
 
 
 @login_required
-def company_profile(request, name):
-    user = get_object_or_404(User, username=name, is_company=True)
+def company_profile(request, username):
+    user = get_object_or_404(User, username=username, is_company=True)
     company = get_object_or_404(Company, user=user)
     # Use the Service model to list this company’s offerings
-    services = Service.objects.filter(company=company).order_by('-date')
-    return render(request, 'users/company_profile.html', {
+    services = Service.objects.filter(company=company).order_by('-created_at')
+    return render(request, 'users/profile.html', {
         'company': company,
         'services': services,
     })

@@ -67,7 +67,7 @@ def customer_profile(request, name):
         .filter(customer=customer)
         .order_by('-requested_at')
     )
-    return render(request, 'users/customer_profile.html', {
+    return render(request, 'users/profile.html', {
         'customer': customer,
         'service_requests': service_requests,
     })
@@ -82,7 +82,7 @@ def company_profile(request, name):
         .filter(company=company)
         .order_by('-created_at')
     )
-    return render(request, 'users/company_profile.html', {
+    return render(request, 'users/profile.html', {
         'company': company,
         'services': services,
     })
