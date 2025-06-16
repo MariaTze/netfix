@@ -1,4 +1,4 @@
-#!/Users/maria/PycharmProjects/netfix/.venv/bin/python3.10
+#!/home/aziagaki/01src/netfix1/.venv/bin/python3.10
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

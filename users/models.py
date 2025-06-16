@@ -8,6 +8,14 @@ class User(AbstractUser):
     is_company = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
     email = models.CharField(max_length=100, unique=True)
+    
+@property
+def is_company(self):
+    return hasattr(self, 'company_profile')
+
+@property
+def is_customer(self):
+    return hasattr(self, 'customer_profile')
 
 User = get_user_model()
 
@@ -20,7 +28,9 @@ class Customer(models.Model):
         related_name="customer_profile",
     )
     # date of birth
-    birth = models.DateField(verbose_name="Date of Birth")
+    birth = models.DateField(
+        verbose_name="Date of Birth")
+
     avatar_index = models.CharField(
         max_length= 2,
         default= '1',

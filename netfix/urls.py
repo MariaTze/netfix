@@ -30,4 +30,7 @@ urlpatterns = [
 
     # Services
     path('services/', include(('services.urls', 'services'), namespace='services')),
+
+    # Profile
+    # path('profile/', include(('users.urls', 'users'), namespace='users'))
 ]

@@ -1195,8 +1195,10 @@ pre {
 .services-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.3rem;
-  margin-left: 14%;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
   margin-bottom: 2rem;
 }
 .service-pill,

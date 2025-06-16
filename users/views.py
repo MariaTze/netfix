@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .forms import CustomerSignUpForm, CompanySignUpForm, UserLoginForm
 from .models import User, Customer, Company
-from services.models import Service
+from services.models import Service, ServiceRequest
 
-
+# TODO: FIX DUPLICATE VIEWS
 
 def register(request):
     return render(request, 'users/register.html')
@@ -66,51 +66,68 @@ def LoginUserView(request):
     return render(request, 'users/login.html', {'form': form})
 
 
+# CUSTOMER PROFILE
 @login_required
-def customer_profile(request, name):
-    user = get_object_or_404(User, username=name, is_customer=True)
+def customer_profile(request, username):
+    # Fetch the user and customer
+    user = get_object_or_404(User, username=username, is_customer=True)
     customer = get_object_or_404(Customer, user=user)
-    # ServiceRequest model not yet implemented, so we pass an empty list
-    service_requests = []
-    return render(request, 'users/profile.html', {
-        'customer': customer,
-        'service_requests': service_requests,
-    })
-
-
-@login_required
-def company_profile(request, username):
-    user = get_object_or_404(User, username=username, is_company=True)
-    company = get_object_or_404(Company, user=user)
-    # Use the Service model to list this company’s offerings
-    services = Service.objects.filter(company=company).order_by('-created_at')
-    return render(request, 'users/profile.html', {
-        'company': company,
-        'services': services,
-    })
-
-
-@login_required
-def company_profile(request, username):
-    # Get the company and its user object
-    company = get_object_or_404(Company, user__username=username)
-    services = Service.objects.filter(company=company).order_by('-date_created')
+    # Get past service requests, newest first
+    service_requests = ServiceRequest.objects.filter(customer=customer).order_by('-requested_at')
+    # Determine if we're in edit mode
     edit_mode = request.GET.get('edit') == '1'
 
-    # Handle form submission
+    # Handle profile update submission
     if request.method == "POST" and edit_mode:
-        user = company.user
-        user.username = request.POST['username']
-        user.email = request.POST['email']
+        # Update user fields
+        user.username = request.POST.get('username', user.username)
+        user.email = request.POST.get('email', user.email)
         user.save()
-        # company.field = request.POST['field']  # (if field is editable)
-        company.avatar_index = request.POST.get('avatar_index', '1')
+        # Update customer-specific fields
+        if 'birth' in request.POST:
+            customer.birth = request.POST.get('birth', customer.birth)
+        if 'avatar_index' in request.POST:
+            customer.avatar_index = request.POST.get('avatar_index', customer.avatar_index)
+        customer.save()
+        return redirect('users:customer_profile', username=user.username)
+
+    # Render the customer profile template
+    return render(request, 'users/customer_profile.html', {
+        'customer': customer,
+        'service_requests': service_requests,
+        'edit_mode': edit_mode,
+    })
+
+
+# COMPANY PROFILE
+@login_required
+def company_profile(request, username):
+    # Fetch the user and company
+    user = get_object_or_404(User, username=username, is_company=True)
+    company = get_object_or_404(Company, user=user)
+    # Get services for display, newest first
+    services = Service.objects.filter(company=company).order_by('-date_created')
+    # Determine if we're in edit mode
+    edit_mode = request.GET.get('edit') == '1'
+
+    # Handle profile update submission
+    if request.method == "POST" and edit_mode:
+        # Update user fields
+        user.username = request.POST.get('username', user.username)
+        user.email = request.POST.get('email', user.email)
+        user.save()
+        # Update company-specific fields
+        company.avatar_index = request.POST.get('avatar_index', company.avatar_index)
+        # If field_of_work is editable, update it
+        if 'field_of_work' in request.POST:
+            company.field_of_work = request.POST.get('field_of_work', company.field_of_work)
         company.save()
         return redirect('users:company_profile', username=user.username)
 
-    # Render profile page
+    # Render the company profile template
     return render(request, 'users/company_profile.html', {
         'company': company,
         'services': services,
         'edit_mode': edit_mode,
+        
     })

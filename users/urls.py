@@ -32,6 +32,4 @@ urlpatterns = [
         views.company_profile,
         name='company_profile'
     ),
-
-    path('company/<str:username>/', views.company_profile, name='company_profile'),
 ]
