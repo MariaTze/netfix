@@ -5,6 +5,20 @@ from django.core.exceptions import ValidationError
 
 from .models import User, Company, Customer
 
+class AvatarChoiceForm(forms.Form):
+    AVATAR_STYLES = [
+        ("adventurer", "Adventurer"),
+        ("avataaars", "Avataaars"),
+        ("bottts", "Bottts"),
+        ("croodles", "Croodles"),
+        ("identicon", "Identicon"),
+        ("micah", "Micah"),
+        ("open-peeps", "Open Peeps"),
+        ("personas", "Personas"),
+        ("pixel-art", "Pixel Art"),
+    ]
+    style = forms.ChoiceField(choices=AVATAR_STYLES)
+
 
 class DateInput(forms.DateInput):
     input_type = 'date'

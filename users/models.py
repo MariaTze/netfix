@@ -21,6 +21,11 @@ class Customer(models.Model):
     )
     # date of birth
     birth = models.DateField(verbose_name="Date of Birth")
+    avatar_index = models.CharField(
+        max_length= 2,
+        default= '1',
+        choices=[(str(i), f"Avatar {i}") for i in "123456789ABCDEFGHIJK"]
+    )
 
     def __str__(self):
         return f"{self.user.username} (Customer)"
@@ -56,6 +61,11 @@ class Company(models.Model):
     rating = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)],
         default=0,
+    )
+    avatar_index = models.CharField(
+        max_length=2,
+        default='1',
+        choices=[(str(i), f"Avatar {i}") for i in "123456789ABCDEFGHIJK"]
     )
 
     def __str__(self):

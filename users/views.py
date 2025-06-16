@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import render
 from .forms import CustomerSignUpForm, CompanySignUpForm, UserLoginForm
 from .models import User, Customer, Company
 from services.models import Service
+
 
 
 def register(request):
@@ -86,4 +87,30 @@ def company_profile(request, username):
     return render(request, 'users/profile.html', {
         'company': company,
         'services': services,
+    })
+
+
+@login_required
+def company_profile(request, username):
+    # Get the company and its user object
+    company = get_object_or_404(Company, user__username=username)
+    services = Service.objects.filter(company=company).order_by('-date_created')
+    edit_mode = request.GET.get('edit') == '1'
+
+    # Handle form submission
+    if request.method == "POST" and edit_mode:
+        user = company.user
+        user.username = request.POST['username']
+        user.email = request.POST['email']
+        user.save()
+        # company.field = request.POST['field']  # (if field is editable)
+        company.avatar_index = request.POST.get('avatar_index', '1')
+        company.save()
+        return redirect('users:company_profile', username=user.username)
+
+    # Render profile page
+    return render(request, 'users/company_profile.html', {
+        'company': company,
+        'services': services,
+        'edit_mode': edit_mode,
     })

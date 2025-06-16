@@ -1,8 +1,5 @@
-# users/urls.py
-
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-
 from . import views
 
 app_name = 'users'
@@ -35,4 +32,6 @@ urlpatterns = [
         views.company_profile,
         name='company_profile'
     ),
+
+    path('company/<str:username>/', views.company_profile, name='company_profile'),
 ]

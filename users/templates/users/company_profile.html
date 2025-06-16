@@ -1,0 +1,94 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Company Profile{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+  <div class="profile-card">
+    <form id="profile-form" method="post" autocomplete="off">
+      {% csrf_token %}
+      <!-- Main avatar (only clickable in edit mode) -->
+      <div style="text-align: center;">
+        <img
+          id="main-avatar"
+          src="https://api.dicebear.com/7.x/bottts/svg?seed={{ company.user.username }}{{ company.avatar_index|default:'1' }}"
+          class="avatar-main-img"
+          style="margin-bottom: 1.5rem; {% if not edit_mode %}cursor:default{% else %}cursor:pointer{% endif %}"
+          {% if edit_mode %}onclick="toggleAvatarModal()" title="Click to change avatar"{% endif %}
+        >
+        {% if edit_mode %}
+          <div style="color:#794bc4;font-size:1.02rem; margin-bottom:0.7rem;">Click avatar to change</div>
+        {% endif %}
+      </div>
+      <div class="profile-name">{{ company.user.username }}</div>
+      <div class="profile-details">
+        <div><strong>Email:</strong> {{ company.user.email }}</div>
+        <div><strong>Field:</strong> {{ company.get_field_of_work_display }}</div>
+      </div>
+      {% if edit_mode %}
+        <input type="text" name="username" value="{{ company.user.username }}" class="form-control mb-2" required>
+        <input type="email" name="email" value="{{ company.user.email }}" class="form-control mb-2" required>
+        <input type="hidden" name="avatar_index" id="avatar_index" value="{{ company.avatar_index|default:'1' }}">
+        <button class="save-btn" type="submit">Save</button>
+      {% else %}
+        <button type="button" class="edit-btn" onclick="window.location.href='?edit=1'">Edit Profile</button>
+      {% endif %}
+    </form>
+  </div>
+</div>
+
+{% if edit_mode %}
+<!-- AVATAR PICKER MODAL -->
+<div id="avatarModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="toggleAvatarModal()">&times;</span>
+    <div style="font-weight:600; color:#6615B2; margin-bottom:1.1rem;">Select Your Avatar</div>
+    <div class="avatar-gallery">
+      {% for i in "123456789ABCDEFGHIJK" %}
+        <img src="https://api.dicebear.com/7.x/bottts/svg?seed={{ company.user.username }}{{ i }}"
+            class="avatar-thumb{% if company.avatar_index|stringformat:'i' == i %} selected{% endif %}"
+            onclick="selectAvatar('{{ i }}')"
+            id="avatar-{{ i }}">
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script>
+function toggleAvatarModal() {
+  const modal = document.getElementById('avatarModal');
+  modal.style.display = (modal.style.display === "block") ? "none" : "block";
+}
+
+// When clicking outside the modal, close it
+window.onclick = function(event) {
+  const modal = document.getElementById('avatarModal');
+  if (modal && event.target === modal) modal.style.display = "none";
+}
+
+function selectAvatar(i) {
+  document.getElementById('main-avatar').src = `https://api.dicebear.com/7.x/bottts/svg?seed={{ company.user.username }}${i}`;
+  document.getElementById('avatar_index').value = i;
+  // Remove .selected from all
+  Array.from(document.getElementsByClassName('avatar-thumb')).forEach(e => e.classList.remove('selected'));
+  document.getElementById('avatar-' + i).classList.add('selected');
+  toggleAvatarModal();
+}
+</script>
+{% endif %}
+
+<!-- SERVICES LIST -->
+<div class="services-section">
+  <div class="services-title">Your Services</div>
+  <div class="services-list">
+    {% for service in services %}
+      <div class="service-pill">
+        <strong>{{ service.name }}</strong>
+        <span class="service-field">({{ service.field }})</span>
+        <span class="service-price">{{ service.price_per_hour }} €/hour</span>
+      </div>
+    {% empty %}
+      <div>No services yet.</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
