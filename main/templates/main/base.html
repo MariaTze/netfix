@@ -46,14 +46,7 @@
                     {% if user.is_authenticated %}
                         <li>
                         {% if user.is_company %}
-                            <a href="{% url 'users:company_profile' user.username %}" class="navbar-avatar-link" title="Profile">
-                                <img
-                                    src="https://api.dicebear.com/7.x/bottts/svg?seed={{ user.username }}{{ user.company_profile.avatar_index|default:'1' }}"
-                                    class="navbar-avatar-img"
-                                    alt="Profile"
-                                    style="width:36px;height:36px;border-radius:50%;object-fit:cover;"
-                                >
-                            </a>
+                            <a href="{% url 'users:company_profile' user.username %}">Profile</a>
                         {% else %}
                             <a href="{% url 'users:customer_profile' user.username %}" class="navbar-avatar-link" title="Profile">
                                 <img
