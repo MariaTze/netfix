@@ -1,12 +1,30 @@
 {% extends 'main/base.html' %}
-
 {% block title %}Create Service{% endblock %}
 
 {% block content %}
-  <h2>Create a New Service</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Service</button>
-  </form>
+<div class="create-service-container">
+    <h2 class="create-title">Create New Service</h2>
+    <form method="post" class="create-service-form">
+        {% csrf_token %}
+        <div class="form-row">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+        </div>
+        <div class="form-row">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+        </div>
+        <div class="form-row-inline">
+            <div class="form-row">
+                {{ form.price_per_hour.label_tag }}
+                {{ form.price_per_hour }}
+            </div>
+            <div class="form-row">
+                {{ form.field.label_tag }}
+                {{ form.field }}
+            </div>
+        </div>
+        <button type="submit" class="create-btn">Create Service</button>
+    </form>
+</div>
 {% endblock %}

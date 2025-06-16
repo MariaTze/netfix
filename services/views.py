@@ -5,6 +5,9 @@ from .models import Service
 from .forms import CreateNewService, RequestServiceForm
 from django.contrib.auth.decorators import login_required
 from .models import ServiceRequest
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect
+
 
 def service_list(request):
     services = Service.objects.all().order_by("-date_created")
@@ -21,7 +24,7 @@ def create(request):
     try:
         company = request.user.company_profile
     except Company.DoesNotExist:
-        return redirect('home')  # Or an error page for non-company users
+        return redirect('home')
 
     if request.method == "POST":
         form = CreateNewService(request.POST, company=company)
@@ -33,6 +36,7 @@ def create(request):
                 price_per_hour=form.cleaned_data['price_per_hour'],
                 company=company,
             )
+            messages.success(request, "Service created successfully!")
             return redirect('services:service_list')
     else:
         form = CreateNewService(company=company)
@@ -71,3 +75,15 @@ def request_service(request, id):
         form = RequestServiceForm()
 
     return render(request, 'services/request_service.html', {'form': form, 'service': service})
+
+
+@login_required
+def delete_service(request, service_id):
+    service = get_object_or_404(Service, id=service_id)
+    # Only allow the company owner to delete
+    if hasattr(request.user, 'company_profile') and service.company.user == request.user:
+        service.delete()
+        messages.success(request, "Service deleted successfully!")
+    else:
+        messages.error(request, "You are not allowed to delete this service.")
+    return redirect('services:service_list')

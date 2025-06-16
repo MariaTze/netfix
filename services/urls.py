@@ -7,4 +7,6 @@ urlpatterns = [
     path('<int:id>', v.index, name='index'),
     path('<int:id>/request_service/', v.request_service, name='request_service'),
     path('<slug:field>/', v.service_field, name='services_field'),
+    path('delete/<int:service_id>/', v.delete_service, name='delete_service'),
+
 ]
