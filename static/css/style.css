@@ -1058,21 +1058,42 @@ pre {
 }
 
 .messages {
-  max-width: 500px;
-  margin: 24px auto 10px auto;
-  text-align: center;
-  z-index: 9999;
-  position: relative;
+    position: fixed;
+    top: 1.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: auto;
+    min-width: 260px;
+    max-width: 95vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+}
+.alert {
+    background: #dfdcf7;
+    color: #50249d;
+    border-radius: 1.2em;
+    padding: 1em 2em;
+    box-shadow: 0 6px 28px rgba(60,40,120,0.12);
+    font-weight: 600;
+    font-size: 1.12em;
+    border: 1.5px solid #b8a1e6;
+    margin-bottom: 0.7em;
+    pointer-events: auto;
+    letter-spacing: 0.01em;
+    text-align: center;
 }
 .alert-success {
-  background: #d1f3d1;
-  color: #207442;
-  padding: 1em 1.2em;
-  border-radius: 1em;
-  margin-bottom: 1em;
-  font-weight: 600;
-  border: 1px solid #aae3aa;
-  box-shadow: 0 4px 20px #d1f3d1cc;
+    background: #d1f3d1;
+    color: #207442;
+    border: 1.5px solid #aae3aa;
+}
+.alert-danger, .alert-error {
+    background: #ffe0e0;
+    color: #d12626;
+    border: 1.5px solid #ffbcbc;
 }
 
 .delete-form {
