@@ -31,7 +31,9 @@
         <input type="hidden" name="avatar_index" id="avatar_index" value="{{ company.avatar_index|default:'1' }}">
         <button class="save-btn" type="submit">Save</button>
       {% else %}
-        <button type="button" class="edit-btn" onclick="window.location.href='?edit=1'">Edit Profile</button>
+          {% if user == company.user %}
+            <button type="button" class="edit-btn" onclick="window.location.href='?edit=1'">Edit Profile</button>
+          {% endif %}
       {% endif %}
     </form>
   </div>

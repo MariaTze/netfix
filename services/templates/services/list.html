@@ -27,9 +27,9 @@
                     <div class="service_card_bottom">
                         <span class="service_price">{{ service.price_per_hour }} €/hour</span>
                         <span class="service_company">by <a
-                                href="/company/{{ service.company.user }}">{{ service.company.user }}</a></span>
+                                href="{% url 'users:company_profile' service.company.user %}">{{ service.company.user }}</a></span>
                     </div>
-                    <a href="/services/{{ service.id }}/" class="service_details_btn">View Details</a>
+                    <a href="{% url 'services:index' service.id %}" class="service_details_btn">View Details</a>
 
                     {% if user.is_authenticated and user.is_company and service.company.user == user %}
                         <form action="{% url 'services:delete_service' service.id %}" method="post" class="delete-form">

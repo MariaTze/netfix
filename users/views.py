@@ -75,7 +75,7 @@ def customer_profile(request, username):
     # Get past service requests, newest first
     service_requests = ServiceRequest.objects.filter(customer=customer).order_by('-requested_at')
     # Determine if we're in edit mode
-    edit_mode = request.GET.get('edit') == '1'
+    edit_mode = request.GET.get('edit') == '1' and request.user == customer.user
 
     # Handle profile update submission
     if request.method == "POST" and edit_mode:
@@ -96,6 +96,7 @@ def customer_profile(request, username):
         'customer': customer,
         'service_requests': service_requests,
         'edit_mode': edit_mode,
+        'profile_user': customer.user,
     })
 
 
@@ -108,7 +109,7 @@ def company_profile(request, username):
     # Get services for display, newest first
     services = Service.objects.filter(company=company).order_by('-date_created')
     # Determine if we're in edit mode
-    edit_mode = request.GET.get('edit') == '1'
+    edit_mode = request.GET.get('edit') == '1' and request.user == company.user
 
     # Handle profile update submission
     if request.method == "POST" and edit_mode:
@@ -129,5 +130,5 @@ def company_profile(request, username):
         'company': company,
         'services': services,
         'edit_mode': edit_mode,
-        
+        'profile_user': company.user,
     })

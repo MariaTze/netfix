@@ -1,26 +1,39 @@
 {% extends 'main/base.html' %}
+{% load static %}
 {% block title %}
     {{field}} Services List
 {% endblock %}
 {% block content %}
-
     {% if services.all|length != 0 %}
-        <p class="title">{{field}} Services</p>
-        <ul class='service_list'>
+        <h2 class="title">{{field}} Services</h2>
+        <div class="services_grid">
             {% for service in services.all %}
-                <div style="display: ruby;">
-                    <div class='service_list_info'>
-                        <li><a href="/services/{{service.id}}">{{ service.name }}</a>-- {{ service.price_per_hour }}€/hour</li>
-                        <pre>{{ service.description }}</pre>
+                <div class="service_card">
+                    <div class="service_card_top">
+                        <h3>
+                            <a href="{% url 'services:index' service.id %}">{{ service.name }}</a>
+                        </h3>
+                        <span class="service_field field-{{ service.field|slugify }}">{{ service.field }}</span>
                     </div>
-                    <p style="display:block; margin: 0; float: right;font-size: small; margin-right: 30px;">by <a>{{service.company.user}}</a></p>
+                    <p class="service_desc">{{ service.description|truncatechars:100 }}</p>
+                    <div class="service_card_bottom">
+                        <span class="service_price">{{ service.price_per_hour }}€/hour</span>
+                        <span class="service_company">
+                            by
+                            <a href="{% url 'users:company_profile' service.company.user %}">
+                                {{ service.company.user }}
+                            </a>
+                        </span>
+                    </div>
+                    <a href="{% url 'services:index' service.id %}" class="service_details_btn">View Details</a>
                 </div>
-                {% if forloop.counter != services.all|length %}
-                    <div class="line"></div>
-                {% endif %}
             {% endfor %}
-        </ul>
+        </div>
     {% else %}
-        <h2>Sorry. No {{field}} services available</h2>
+        <div style="text-align:center; margin:2.5rem 0;">
+            <img src="{% static 'gifs/not_available.gif' %}" alt="No services available"
+                 style="width: 420px; max-width: 90vw; height: auto; display: block; margin: 0 auto 1.3rem auto;" />
+                <h2 style="text-align:center;">Sorry. No {{field}} services available.</h2>
+        </div>
     {% endif %}
 {% endblock %}
