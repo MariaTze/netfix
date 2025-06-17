@@ -33,3 +33,10 @@ class RequestServiceForm(forms.Form):
     address = forms.CharField(max_length=255, label='Service Address')
     hours = forms.IntegerField(min_value=1, label='Service Duration (hours)')
 
+
+class RateServiceForm(forms.Form):
+    rating = forms.ChoiceField(
+        choices=[(i, str(i)) for i in range(1, 6)],
+        widget=forms.RadioSelect,
+        label="Rate this service"
+    )

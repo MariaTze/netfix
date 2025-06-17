@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block title %}Rate Service{% endblock %}
+
+{% block content %}
+<div class="service_card detail-card" style="max-width:470px;margin:2.5rem auto 0 auto;">
+    <h2 class="detail-title" style="margin-bottom:.4rem; text-align:center;">
+        Rate "{{ service_request.service.name }}"
+    </h2>
+    <p style="color:#888; text-align:center; margin-bottom:1.4rem; font-size:1.07rem;">
+        How satisfied are you with this service?
+    </p>
+    <form method="POST" id="rating-form">
+        {% csrf_token %}
+        <div class="star-rating">
+            {% for i in "54321" %}
+                <input type="radio" name="rating" id="star{{ i }}" value="{{ i }}" {%  if form.rating.value == i %}checked{% endif %}>
+                <label for="star{{ i }}">&#9733;</label>
+            {% endfor %}
+        </div>
+        <button type="submit" class="service_details_btn"
+                style="margin:1.5rem auto 0 auto; display:block; width:180px; font-size:1.07rem; padding:.65rem 0;">
+                Submit Rating</button>
+    </form>
+</div>
+{% endblock %}

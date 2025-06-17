@@ -74,6 +74,9 @@ def customer_profile(request, username):
     customer = get_object_or_404(Customer, user=user)
     # Get past service requests, newest first
     service_requests = ServiceRequest.objects.filter(customer=customer).order_by('-requested_at')
+    # Annotate each request with the total cost
+    for req in service_requests:
+        req.total_cost = req.hours * req.service.price_per_hour
     # Determine if we're in edit mode
     edit_mode = request.GET.get('edit') == '1' and request.user == customer.user
 

@@ -10,12 +10,13 @@
       <!-- Main avatar (only clickable in edit mode) -->
       <div style="text-align: center;">
         <img
-          id="main-avatar"
-          src="https://api.dicebear.com/7.x/bottts/svg?seed={{ company.user.username }}{{ company.avatar_index|default:'1' }}"
-          class="avatar-main-img"
-          style="margin-bottom: 1.5rem; {% if not edit_mode %}cursor:default{% else %}cursor:pointer{% endif %}"
-          {% if edit_mode %}onclick="toggleAvatarModal()" title="Click to change avatar"{% endif %}
-        >
+            id="main-avatar"
+            src="https://api.dicebear.com/7.x/bottts/svg?seed={{ company.user.username }}{{ company.avatar_index|default:'1' }}"
+            class="avatar-main-img"
+            style="margin-bottom: 1.5rem; cursor:{% if edit_mode %}pointer{% else %}default{% endif %};"
+            {% if edit_mode %}onclick="toggleAvatarModal()" title="Click to change avatar"{% endif %}
+        />
+
         {% if edit_mode %}
           <div style="color:#794bc4;font-size:1.02rem; margin-bottom:0.7rem;">Click avatar to change</div>
         {% endif %}

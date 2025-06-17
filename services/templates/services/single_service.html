@@ -1,15 +1,28 @@
 {% extends 'main/base.html' %}
-{% block title %}
-    {{ service.name }}
-{% endblock %}
+{% block title %}{{ service.name }}{% endblock %}
+
 {% block content %}
-    <div class='service_info_header'>
-        <h1>{{service.name}} -- {{service.price_per_hour}}€/hour</h1>
-        <h5>by <a href="{% url 'users:company_profile' service.company.user %}">{{ service.company.user }}</a></h5>
+<div class="service_card detail-card">
+    <div class="service_card_top">
+        <h2 class="detail-title">{{ service.name }}</h2>
+        <span class="service_field field-{{ service.field|slugify }}">{{ service.field }}</span>
     </div>
-    <h3>{{service.field}}</h3>
-    <p style="text-align: left;">{{service.description}}</p>
-    {% if request.user.is_customer %}
-        <a href="/services/{{service.id}}/request_service/" class="like_button">Request Service</a>
+    <p class="service_desc" style="font-size:1.13rem; margin: 1.1rem 0 2rem 0;">
+        {{ service.description }}
+    </p>
+    <div class="service_card_bottom">
+        <span class="service_price">{{ service.price_per_hour }} €/hour</span>
+        <span class="service_company">
+            by
+            <a href="{% url 'users:company_profile' service.company.user %}">
+                {{ service.company.user }}
+            </a>
+        </span>
+    </div>
+    {% if request.user.is_authenticated and request.user.is_customer %}
+        <a href="/services/{{ service.id }}/request_service/" class="service_details_btn">
+            Request Service
+        </a>
     {% endif %}
+</div>
 {% endblock %}

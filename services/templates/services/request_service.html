@@ -4,10 +4,25 @@
 {% endblock %}
 
 {% block content %}
-    <p class="title">Request "{{ service.name }}"</p>
-    <form method="POST">
+<div class="service_card detail-card" style="max-width:470px;margin:2.5rem auto 0 auto;">
+    <h2 class="detail-title" style="margin-bottom:1.2rem;">
+        Request "{{ service.name }}"
+    </h2>
+    <div style="margin-bottom:1.5rem;">
+        <span class="service_field field-{{ service.field|slugify }}">{{ service.field }}</span>
+        <span class="service_price" style="margin-left:1.1rem;">{{ service.price_per_hour }} €/hour</span>
+    </div>
+    <form method="POST" style="display:flex;flex-direction:column;gap:1.15rem;">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Request</button>
+        <div>
+            <label for="id_address" style="font-weight:600;color:#794bc4;">Address</label><br>
+            {{ form.address }}
+        </div>
+        <div>
+            <label for="id_hours" style="font-weight:600;color:#794bc4;">Hours</label><br>
+            {{ form.hours }}
+        </div>
+        <button type="submit" class="service_details_btn" style="margin-top:1.7rem;">Request</button>
     </form>
+</div>
 {% endblock %}

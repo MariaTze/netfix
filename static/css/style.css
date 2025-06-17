@@ -54,20 +54,33 @@ button:hover {
     white-space: pre-line;
 }
 
-/* ======================================== Home Page ============================================== */
-
-.home_logo {
-    display: block;
+.title {
+    text-align: center;
+    margin-top: 1.8rem;
+    margin-bottom: 1.1rem;
+    font-weight: 700;
+    font-size: 2rem;
 }
 
-.site_title {
-    text-align: center;
-    font-size: 70px;
+/* ======================================== Layout & Structure ======================================= */
+
+html, body {
+    overflow-x: hidden;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-content {
+    flex: 1;
 }
 
 /* ======================================== Navbar ============================================== */
 
-/* Navbar sits on top of hero */
 .navbar {
     position: relative;
     top: 0;
@@ -142,17 +155,6 @@ button:hover {
     margin: 0 auto;
     padding: 0 20px;
     height: 60px;
-}
-
-.logo-link {
-    margin-top: 15px;
-    flex: 0 0 auto;
-}
-
-.site-logo {
-    height: 120px;
-    width: auto;
-    margin-top: 10px;
 }
 
 .nav-links-left,
@@ -241,43 +243,273 @@ button:hover {
     color: var(--color-white);
 }
 
+/* ======================================== Home Page ============================================== */
 
-/* ===================================== Choose user type ======================================= */
-
-.choice_text {
-    text-shadow: 0px 0px 1px var(--color-accent);
-    color: var(--color-text);
-    text-align: center;
-    font-size: 40px;
-}
-
-.choice {
-    display: inline-grid;
-}
-
-.img {
-    border: 1px solid #ccc;
-    border-radius: 14px;
-    display: inline-block;
-    padding: 20px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-}
-
-.img:hover {
-    box-shadow: 0 0 9px rgba(0, 0, 0, 0.3);
-}
-
-.img:active {
-    background-color: #e0e0e0;
-    box-shadow: 0 0 9px rgba(0, 0, 0, 0.4);
-}
-
-.label_images {
+.home_logo {
     display: block;
 }
 
-/* ====================== Auth / Register & Login Forms ====================== */
+.site_title {
+    text-align: center;
+    font-size: 70px;
+}
+
+.logo-link {
+    margin-top: 15px;
+    flex: 0 0 auto;
+}
+
+.site-logo {
+    height: 120px;
+    width: auto;
+    margin-top: 10px;
+}
+
+/* ======================================== Hero Section ======================================= */
+
+.hero {
+    position: relative;
+    background-image: url('/static/images/hero-bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    margin-top: -60px;
+    padding-top: 60px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.hero-inner {
+    max-width: 100%;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-inner h1 {
+    font-size: 3.5rem; /* large headline */
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+    color: var(--color-accent);
+}
+
+.hero-inner p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--color-text);
+    max-width: 20em;
+}
+
+.btn-cta {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 100px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 700;
+    transition: background 0.3s;
+}
+
+.btn-cta:hover {
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+.hero-nav {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 0;
+}
+
+/* ======================================== Categories Grid ======================================= */
+
+.categories {
+    position: relative;
+    background-image: url('/static/images/categories.png');
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: -12px;
+    width: 100vw;
+    padding: 60px 20px 100px;
+    text-align: center;
+    background-color: var(--color-white);
+}
+
+.categories h2 {
+    font-size: 2rem;
+    margin-bottom: 32px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.category-card {
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 24px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.category-card img {
+    height: 80px;
+    margin-bottom: 12px;
+}
+
+.category-card span {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+}
+
+/* ======================================== How It Works Section ======================================= */
+
+.how-it-works {
+    position: relative;
+    background-image: url('/static/images/how-bg.png');
+    background-position: center -50px;
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: -12px;
+    width: 100vw;
+    padding: 60px 20px 100px;
+    text-align: center;
+    background-color: var(--color-white);
+}
+
+.how-it-works h2 {
+    font-size: 2rem;
+    margin-bottom: 32px;
+}
+
+.steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.step {
+    max-width: 240px;
+}
+
+.step-icon {
+    background: var(--color-accent);
+    color: var(--color-white);
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    margin: 0 auto 12px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.step-icon:hover {
+    transform: scale(1.2);
+}
+
+.step h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.step p {
+    color: var(--color-text);
+    font-size: 0.95rem;
+}
+
+/* ======================================== Footer ============================================== */
+
+.site-footer {
+    background: linear-gradient(
+            to right,
+            var(--color-secondary),
+            var(--color-primary)
+    );
+    color: var(--color-white);
+    padding: 40px 20px 20px;
+    font-size: 0.9rem;
+}
+
+.footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+}
+
+.footer-section {
+    flex: 1 1 200px;
+    margin: 0 20px 20px;
+}
+
+.footer-section h4 {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: var(--color-accent);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 6px;
+}
+
+.footer-section ul li a {
+    color: var(--color-white);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-section ul li a:hover {
+    color: var(--color-accent);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 12px;
+    font-size: 0.8rem;
+}
+
+/* ======================================== Auth / Forms ======================================= */
 
 .form-container {
     max-width: 400px;
@@ -375,266 +607,62 @@ button:hover {
     color: var(--color-secondary);
 }
 
-/* ————— Home Hero ————— */
-.hero {
-    position: relative;
-    background-image: url('/static/images/hero-bg.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh;
-    margin-top: -60px;
-    padding-top: 60px;
-    display: flex;
-    align-items: center;
-    text-align: left;
+input[type="text"], input[type="number"] {
+    padding: .6rem 1.1rem;
+    border-radius: .9rem;
+    border: 1.5px solid #ecd7f7;
+    background: #faf7ff;
+    font-size: 1.05rem;
+    margin-top: .5rem;
+    margin-bottom: .3rem;
+    width: 80%;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+}
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: #9f73e6;
 }
 
-.hero-inner {
-    max-width: 100%;
-    margin-left: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    position: relative;
-    z-index: 1;
-}
 
-/* Headline */
-.hero-inner h1 {
-    font-size: 3.5rem; /* large headline */
-    font-weight: 700;
-    line-height: 1.1;
-    margin: 0;
-    color: var(--color-accent);
-}
+/* ======================================== Choose User Type ======================================= */
 
-/* Subtext */
-.hero-inner p {
-    font-size: 1.25rem;
-    line-height: 1.5;
-    margin: 0;
+.choice_text {
+    text-shadow: 0px 0px 1px var(--color-accent);
     color: var(--color-text);
-    max-width: 20em;
+    text-align: center;
+    font-size: 40px;
 }
 
-/* CTA Button */
-.btn-cta {
-    margin-top: 1.5rem;
-    padding: 0.75rem 1.5rem;
-    background: var(--color-primary);
-    color: var(--color-white);
-    border-radius: 100px;
-    text-decoration: none;
+.choice {
+    display: inline-grid;
+}
+
+.img {
+    border: 1px solid #ccc;
+    border-radius: 14px;
     display: inline-block;
-    font-weight: 700;
-    transition: background 0.3s;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
-.btn-cta:hover {
-    background: var(--color-bg);
-    color: var(--color-text);
+.img:hover {
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.3);
 }
 
-/* ————— Hero Slider Dots ————— */
-.hero-nav {
-    display: flex;
-    gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 2rem 0 0 0;
+.img:active {
+    background-color: #e0e0e0;
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.4);
 }
 
-/* ————— Categories Grid ————— */
-.categories {
-    position: relative;
-    background-image: url('/static/images/categories.png');
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    margin-top: -12px;
-    width: 100vw;
-    padding: 60px 20px 100px;
-    text-align: center;
-    background-color: var(--color-white);
+.label_images {
+    display: block;
 }
 
-.categories h2 {
-    font-size: 2rem;
-    margin-bottom: 32px;
-}
+/* ======================================== Services Section ======================================= */
 
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 24px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.category-card {
-    background: var(--color-white);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 24px 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.2s;
-}
-
-.category-card img {
-    height: 80px;
-    margin-bottom: 12px;
-}
-
-.category-card span {
-    font-weight: 600;
-    color: var(--color-text);
-}
-
-.category-card:hover {
-    transform: translateY(-4px);
-}
-
-/* ————— How It Works ————— */
-.how-it-works {
-    position: relative;
-    background-image: url('/static/images/how-bg.png');
-    background-position: center -50px;
-    /*background-repeat: no-repeat;*/
-    background-size: cover;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    margin-top: -12px;
-    width: 100vw;
-    padding: 60px 20px 100px;
-    text-align: center;
-    background-color: var(--color-white);
-}
-
-.how-it-works h2 {
-    font-size: 2rem;
-    margin-bottom: 32px;
-}
-
-.steps {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-}
-
-.step {
-    max-width: 240px;
-}
-
-.step-icon {
-    background: var(--color-accent);
-    color: var(--color-white);
-    width: 48px;
-    height: 48px;
-    line-height: 48px;
-    border-radius: 50%;
-    font-size: 1.25rem;
-    margin: 0 auto 12px;
-    transition: transform 0.2s ease-in-out;
-}
-
-.step-icon:hover {
-    transform: scale(1.2);
-}
-
-.step h3 {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-}
-
-.step p {
-    color: var(--color-text);
-    font-size: 0.95rem;
-}
-
-/* ========== Footer Styles ========== */
-.site-footer {
-    background: linear-gradient(
-            to right,
-            var(--color-secondary),
-            var(--color-primary)
-    );
-    color: var(--color-white);
-    padding: 40px 20px 20px;
-    font-size: 0.9rem;
-}
-
-.footer-inner {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto 20px;
-}
-
-.footer-section {
-    flex: 1 1 200px;
-    margin: 0 20px 20px;
-}
-
-.footer-section h4 {
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-    color: var(--color-accent);
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-section ul li {
-    margin-bottom: 6px;
-}
-
-.footer-section ul li a {
-    color: var(--color-white);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.footer-section ul li a:hover {
-    color: var(--color-accent);
-}
-
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    padding-top: 12px;
-    font-size: 0.8rem;
-}
-
-html, body {
-    overflow-x: hidden;
-    height: 100%;
-    margin: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.site-content {
-    flex: 1;
-}
-
-/* ————— Services Grid ————— */
 .services_header_grid {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -650,7 +678,7 @@ body {
     text-align: center;
     margin: 0;
     font-size: 2rem;
-    font-weight: 750;
+    font-weight: 700;
     color: var(--color-primary);
     letter-spacing: 1px;
 }
@@ -660,7 +688,6 @@ body {
     justify-self: end;
 }
 
-/* ——— Services Create Button ——— */
 .create_service {
     background: var(--color-white);
     color: #ed6ea0;
@@ -696,7 +723,6 @@ body {
     transition: 0.5s;
 }
 
-/* ————— Services Grid ————— */
 .services_grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -727,72 +753,160 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
 }
-
-.service_field {
-    color: #fff;
-    font-size: 0.9rem;
-    padding: 0.3rem 0.8rem;
-    border-radius: 1rem;
-    margin-left: 0.5rem;
-    display: inline-block;
-    font-weight: 600;
-}
-
-.field-air-conditioner { background: #50b6ff;}
-.field-carpentry { background: #bc872b; }
-.field-electricity { background: #ffd93b; color: #222; }
-.field-gardening { background: #41b883; }
-.field-home-machines { background: #7e57c2; }
-.field-housekeeping { background: #f9844a; }
-.field-interior-design { background: #6d5b97; }
-.field-locks { background: #536dfe; }
-.field-painting { background: #ed6ea0; }
-.field-plumbing { background: #38ada9; }
-.field-water-heaters { background: #fa983a; }
 
 .service_desc {
     margin: 1rem 0;
-    color: var(--color-text);
+    color: var(--color-text, #1a1347);
     min-height: 60px;
+    font-size: 1.13rem;
 }
 
 .service_card_bottom {
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: var(--color-accent);
+    align-items: center;
+    margin-top: 2.2rem;
+    font-size: 1.04rem;
+    color: #7748b1;
 }
 
 .service_price {
-    font-weight: bold;
-    color: #794BC4;
+    background: #fcf6ff;
+    border-radius: .6rem;
+    padding: .2rem 1rem;
+    font-weight: 700;
+    color: #985edb;
+    font-size: 1.09rem;
 }
 
 .service_company a {
-    color: #F66B5EFF;
-    text-decoration: underline;
+    color: #794bc4;
+    font-weight: 600;
+    text-decoration: none;
 }
 
-.service_details_btn {
+.service_details_btn, .request-btn {
     background: linear-gradient(90deg, #794bc4 0%, #ed6ea0 100%);
     color: white;
-    border-radius: 1rem;
-    padding: 0.5rem 1.3rem;
+    border-radius: 1.5rem;
+    padding: 0.85rem 0;
     text-align: center;
     text-decoration: none;
-    font-weight: bold;
-    margin-top: 0.5rem;
+    font-weight: 600;
+    margin-top: 2.1rem;
+    width: 100%;
     transition: background 0.2s;
+    border: none;
+    outline: none;
+    display: block;
+    font-size: 1.12rem;
 }
 
-.service_details_btn:hover {
+.service_details_btn:hover, .request-btn:hover {
     background: linear-gradient(90deg, #DFDCF7 0%, #242E6C 100%);
     color: white;
+    text-decoration: none;
 }
 
-/* ======================================== Service Info ======================================== */
+/* --------- Service Category Field Colors --------- */
+
+.service_field {
+    background: #f3ecfa;
+    color: #794bc4;
+    font-size: .98rem;
+    border-radius: 1.2rem;
+    padding: .3rem 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-left: 0.5rem;
+    display: inline-block;
+}
+
+.field-air-conditioner   { background: #b7e6fb; color: #295366; }
+.field-carpentry        { background: #f8e1ce; color: #7a4c15; }
+.field-electricity      { background: #fcf4c0; color: #8b7007; }
+.field-gardening        { background: #c8efd4; color: #276146; }
+.field-home-machines    { background: #ded3f6; color: #574678; }
+.field-housekeeping     { background: #ffe2ec; color: #a14c65; }
+.field-interior-design  { background: #c9dbf8; color: #425471; }
+.field-locks            { background: #c8e0f9; color: #35526d; }
+.field-painting         { background: #f9cee7; color: #9e3871; }
+.field-plumbing         { background: #cdf6f9; color: #338893; }
+.field-water-heaters    { background: #ffe7cf; color: #8d5525; }
+
+/* --------- Single Service Detail Card --------- */
+
+.detail-card {
+    max-width: 470px;
+    margin: 2.2rem auto 0 auto;
+    padding: 2.4rem 2rem 2rem 2rem;
+    box-shadow: 0 6px 36px rgba(130,88,159,0.13);
+}
+
+.detail-title {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+    color: #794bc4;
+}
+
+/* ======================================== Service List / Profile Pills ======================================= */
+
+.services-title {
+  font-size: 1.7rem;
+  color: #4c2a97;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+}
+.services-section {
+  margin-top: 2.7rem;
+  margin-bottom: 2.5rem;
+}
+.services-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+.service-pill,
+.service-profile-item {
+  background: #fff;
+  border-radius: 1.4rem;
+  box-shadow: 0 1px 8px #e7d1f5;
+  padding: 1.15rem 2.1rem 1.15rem 2rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #5f3ea7;
+  min-width: 245px;
+  margin-bottom: 0.4rem;
+}
+.service-field {
+  color: #ed6ea0;
+  background: #f7e7f6;
+  border-radius: 1.1rem;
+  padding: 0.14rem 0.7rem;
+  font-size: 0.96rem;
+  font-weight: 600;
+}
+.service-price {
+  color: #794bc4;
+  font-weight: 700;
+  margin-left: 0.7rem;
+  font-size: 1rem;
+}
+
+/* ======================================== Service Info / List Details ======================================= */
 
 .service_info_header {
     display: block ruby;
@@ -802,19 +916,17 @@ body {
     float: right;
 }
 
-/* ======================================== Service List ======================================== */
-
 .service_list {
     padding: 0;
     margin-bottom: 20px;
 }
 
-pre {
-    display: none;
-}
-
 .service_list_info {
     padding: 0 30px;
+}
+
+pre {
+    display: none;
 }
 
 .service_list_info li {
@@ -839,7 +951,7 @@ pre {
     font-size: x-large;
 }
 
-/* ======================================== Create Service  ======================================== */
+/* ======================================== Create Service ======================================= */
 
 .create-service-container {
     max-width: 420px;
@@ -855,7 +967,7 @@ pre {
 
 .create-title {
     font-size: 2rem;
-    font-weight: 750;
+    font-weight: 700;
     margin-bottom: 2rem;
     text-align: center;
     color: var(--color-primary);
@@ -918,7 +1030,7 @@ pre {
 }
 
 .form-row-inline label {
-    color: #223273; /* If you want different label color for inline fields */
+    color: #223273;
 }
 
 .create-btn {
@@ -993,7 +1105,27 @@ pre {
     color: #fff;
 }
 
-/* Modal styles */
+/* ======================================== Modal Styles ======================================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100%; height: 100%;
+  overflow: auto;
+  background: rgba(40,36,68,0.2);
+}
+.modal-content {
+  background: #fff;
+  margin: 7% auto;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 6px 32px rgba(122,84,218,0.22);
+  position: relative;
+}
+
 .modal-overlay {
   position: fixed;
   z-index: 500;
@@ -1046,56 +1178,40 @@ pre {
   background: linear-gradient(90deg, #794bc4 0%, #ed6ea0 100%);
 }
 
-
-.profile-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 2.5rem;
+.close {
+  position: absolute; right: 22px; top: 18px;
+  font-size: 2.2rem; color: #ed6ea0; font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s;
 }
+.close:hover { color: #794bc4; }
 
-.profile-card {
-  background: #fff;
-  border-radius: 2.5rem;
-  box-shadow: 0 8px 32px rgba(60,40,120,0.13);
-  padding: 3rem 3rem 2rem 3rem;
-  text-align: center;
-  width: 450px;
-  margin-bottom: 2rem;
-}
-
-/* --- AVATAR SECTION --- */
-.avatar-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .avatar-gallery {
   display: flex;
   gap: 1.2rem;
-  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem 0 1.3rem 0;
 }
-.avatar-thumb,
-.avatar-option {
+
+.avatar-thumb {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  box-shadow: 0 1px 8px #eee;
-  border: 2.5px solid transparent;
+  border: 3px solid transparent;
   background: #f6f6fc;
   cursor: pointer;
-  transition: border 0.2s, transform 0.18s;
   object-fit: cover;
 }
-.avatar-thumb.selected,
-.avatar-option.selected {
+
+.avatar-thumb.selected {
   border: 3px solid #ed6ea0;
-  transform: scale(1.15);
 }
-.avatar-thumb:hover,
-.avatar-option:hover {
+
+.avatar-thumb:hover:not(.selected) {
   border: 3px solid #794bc4;
-  transform: scale(1.09);
 }
+
 .main-avatar {
   margin-bottom: 1.4rem;
 }
@@ -1106,11 +1222,10 @@ pre {
   border-radius: 50%;
   background: #f8f7fc;
   box-shadow: 0 2px 16px #eee;
-  border: 3.5px solid #242E6C;
+  border: 3px solid #242E6C;
   object-fit: cover;
 }
 
-/* --- PROFILE NAME & DETAILS --- */
 .profile-name,
 .profile-username {
   font-family: 'Lexend Exa', 'Poppins', 'Nunito', sans-serif;
@@ -1127,7 +1242,6 @@ pre {
   margin-bottom: 1.5rem;
 }
 
-/* --- FORM FIELDS IN EDIT MODE --- */
 .profile-card input[type="text"],
 .profile-card input[type="email"],
 .profile-card select {
@@ -1151,7 +1265,6 @@ pre {
   border-color: #ed6ea0;
 }
 
-/* --- BUTTONS --- */
 .edit-btn,
 .save-btn {
   display: inline-block;
@@ -1179,141 +1292,114 @@ pre {
   background: linear-gradient(90deg, #794bc4 0%, #ed6ea0 100%);
 }
 
-/* --- SERVICE LIST / PILLS --- */
-.services-title {
-  font-size: 1.7rem;
-  color: #4c2a97;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 2.5rem;
-  margin-bottom: 3rem;
-}
-.services-section {
-  margin-top: 2.7rem;
-  margin-bottom: 2.5rem;
-}
-.services-list {
+.profile-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1.3rem;
-  padding-top: 1.5rem;
-  padding-bottom: 2rem;
+  margin-top: 2.5rem;
+}
+
+.profile-card {
+  background: #fff;
+  border-radius: 2.5rem;
+  box-shadow: 0 8px 32px rgba(60,40,120,0.13);
+  padding: 3rem 3rem 2rem 3rem;
+  text-align: center;
+  width: 450px;
   margin-bottom: 2rem;
 }
-.service-pill,
-.service-profile-item {
+
+/* ======================================== Requested Services Table (Profile) ======================================= */
+
+.requested-services-table {
+  width: 60%;
+  margin: 1.5rem auto;
+  border-collapse: collapse;
   background: #fff;
-  border-radius: 1.4rem;
-  box-shadow: 0 1px 8px #e7d1f5;
-  padding: 1.15rem 2.1rem 1.15rem 2rem;
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-  font-size: 1.08rem;
-  font-weight: 500;
-  color: #5f3ea7;
-  min-width: 245px;
-  margin-bottom: 0.4rem;
+  box-shadow: 0 2px 10px rgba(130,88,159,0.07);
+  border-radius: 14px;
+  overflow: hidden;
 }
-.service-field {
-  color: #ed6ea0;
-  background: #f7e7f6;
-  border-radius: 1.1rem;
-  padding: 0.14rem 0.7rem;
-  font-size: 0.96rem;
-  font-weight: 600;
+.requested-services-table th, .requested-services-table td {
+  padding: .9rem 1.1rem;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
 }
-.service-price {
+.requested-services-table th {
+  background: #f7f0fa;
   color: #794bc4;
   font-weight: 700;
-  margin-left: 0.7rem;
-  font-size: 1rem;
+}
+.requested-services-table tr:last-child td {
+  border-bottom: none;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0; top: 0; width: 100%; height: 100%;
-  overflow: auto;
-  background: rgba(40,36,68,0.2);
+/* ======= Star Ratings ======= */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 0.3em;
+    margin: 1.2rem 0 1.5rem 0;
 }
-.modal-content {
-  background: #fff;
-  margin: 7% auto;
-  padding: 2.5rem;
-  border-radius: 1.5rem;
-  width: 360px;
-  text-align: center;
-  box-shadow: 0 6px 32px rgba(122,84,218,0.22);
-  position: relative;
+.star-rating input[type="radio"] {
+    display: none;
 }
-.close {
-  position: absolute; right: 22px; top: 18px;
-  font-size: 2.2rem; color: #ed6ea0; font-weight: 700;
-  cursor: pointer;
-  transition: color 0.2s;
+.star-rating label {
+    font-size: 2.2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0 2px;
 }
-.close:hover { color: #794bc4; }
-.avatar-gallery {
-  display: flex; gap: 1.2rem; flex-wrap: wrap;
-  justify-content: center; margin: 2rem 0 1.3rem 0;
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc700;
 }
-.avatar-thumb {
-  width: 54px; height: 54px; border-radius: 50%;
-  border: 2.5px solid transparent; background: #f6f6fc;
-  cursor: pointer; transition: border 0.2s, transform 0.18s;
-  object-fit: cover;
-}
-.avatar-thumb.selected { border: 3px solid #ed6ea0; transform: scale(1.15);}
-.avatar-thumb:hover { border: 3px solid #794bc4; }
 
-
-
-/* --- SINGLE SERVICE PAGE --- */
-
-.detail-card {
-    max-width: 500px;
-    margin: 2rem auto 0 auto;
-    padding: 2.5rem 2rem 2rem 2rem;
-    box-shadow: 0 6px 36px rgba(130,88,159,0.14);
-    border-radius: 1.7rem;
-    background: #fff;
-    position: relative;
-}
-.detail-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: .5rem;
-    color: #794bc4;
-}
-.title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 750;
+.service-rating {
+    margin: 0.4em 0 0.3em 0;
+    display: flex;
     align-items: center;
-    margin-top: 2.5rem;
-    margin-bottom: 2rem;
-    min-height: 48px;
-    position: relative;
+    gap: 0.3em;
+    font-size: 1.07em;
 }
-.request-btn {
-    display: block;
-    width: 100%;
-    margin: 2.2rem auto 0 auto;
-    font-size: 1.13rem;
-    padding: .85rem 0;
-    background: #794bc4;
-    color: #fff;
-    border-radius: .9rem;
-    text-align: center;
-    transition: background .2s;
+.service-rating .star {
+    color: #ddd;
+    font-size: 1.13em;
+    margin-right: 1.5px;
+    transition: color 0.15s;
+}
+.service-rating .star.filled {
+    color: #ffc700;
+}
+.service-rating .rating-value {
+    margin-left: .45em;
     font-weight: 600;
-}
-.request-btn:hover {
-    background: #9f73e6;
-    color: #fff;
-    text-decoration: none;
+    color: #794bc4;
+    font-size: .99em;
 }
 
+.table-action-btn {
+    width: auto;
+    min-width: 90px;
+    max-width: 120px;
+    display: inline-block;
+    padding: 0.35rem 1.3rem;
+    font-size: 1.02rem;
+    margin: 0 auto;
+    border-radius: 1.1rem;
+    background: linear-gradient(90deg, #794bc4 0%, #ed6ea0 100%);
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    outline: none;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: none;
+}
+
+.table-action-btn:hover {
+    background: linear-gradient(90deg, #DFDCF7 0%, #242E6C 100%);
+    color: white;
+}

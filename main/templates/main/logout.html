@@ -1,9 +1,32 @@
-{% extends 'main/base.html' %} 
-    {% block title %}
-        Bye bye
-    {% endblock %}
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Bye bye{% endblock %}
 
 {% block content %}
-    <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 80px;">Bye! Hope to see you soon.</p>
-    <a href="/" style="display: block; text-align: center; margin-top: 60px;">Return to home page</a>
+<style>
+.goodbye-btn {
+    font-size: 1.3rem;
+    color: #794bc4;
+    border-radius: 3rem;
+    padding: 0.7rem 2.3rem;
+    background: #f5edff;
+    font-weight: 600;
+    margin-bottom: 4rem;
+    text-decoration: none;
+    transition: color 0.17s, background 0.17s;
+}
+.goodbye-btn:hover {
+    color: #fff;
+    background: #242E6C;
+}
+</style>
+<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:48vh;">
+    <img src="{% static 'images/goodbye.png' %}" alt="See you soon!" style="width: 480px; margin: 0 auto 0.8rem auto; display: block;">
+    <p style="font-family: inherit; font-size: 64px; margin-bottom: 1.3rem; text-align:center;">
+        Bye! Hope to see you soon.
+    </p>
+    <a href="/" class="goodbye-btn">
+        Return to Home Page
+    </a>
+</div>
 {% endblock %}

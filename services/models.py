@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from users.models import Company, Customer
 from django.conf import settings
-
+from django.db.models import Avg
 
 class Service(models.Model):
     FIELD_CHOICES = (
@@ -32,12 +32,17 @@ class Service(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def avg_rating(self):
+        return self.servicerequest_set.aggregate(Avg('rating'))['rating__avg']
+
 class ServiceRequest(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
     hours = models.PositiveIntegerField()
     requested_at = models.DateTimeField(auto_now_add=True)
+    rating = models.PositiveSmallIntegerField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.customer.user.username} requests {self.service.name} @ {self.requested_at:%Y-%m-%d %H:%M}"
