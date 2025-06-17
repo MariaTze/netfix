@@ -7,3 +7,5 @@ urlpatterns = [
     path('', v.home, name='home'),
     path('logout/', v.logout, name='logout')
 ]
+
+handler400 = 'main.views.page_not_found'
