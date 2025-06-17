@@ -87,6 +87,14 @@ def request_service(request, id):
         'form': form,
         'service': service
     })
+@login_required
+def cancel_service_request(request, req_id):
+    service_request = get_object_or_404(ServiceRequest, id=req_id, customer=request.user.customer_profile)
+    if request.method == "POST":
+        service_request.delete()
+        messages.success(request, "Your service booking has been cancelled.")
+        return redirect('users:customer_profile', username=request.user.username)
+    return render(request, 'services/cancel_confirmation.html', {'service_request': service_request})
 
 @login_required
 def delete_service(request, service_id):

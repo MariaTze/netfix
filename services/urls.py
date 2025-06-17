@@ -10,5 +10,6 @@ urlpatterns = [
     path('delete/<int:service_id>/', v.delete_service, name='delete_service'),
     path('most-requested/', v.most_requested_services, name='most_requested_services'),
     path('rate/<int:request_id>/', v.rate_service, name='rate_service'),
+    path('cancel-request/<int:req_id>/', v.cancel_service_request, name='cancel_service_request'),
 
 ]

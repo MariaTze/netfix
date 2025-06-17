@@ -811,6 +811,52 @@ input[type="text"]:focus, input[type="number"]:focus {
     text-decoration: none;
 }
 
+.table-action-btn,
+.cancel-btn {
+    width: auto;
+    min-width: 90px;
+    max-width: 120px;
+    display: inline-block;
+    padding: 0.35rem 1.3rem;
+    font-size: 1.02rem;
+    margin: 0 auto;
+    border-radius: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    outline: none;
+    transition: background 0.2s, box-shadow 0.2s, color 0.18s;
+    box-shadow: none;
+    color: white;
+    cursor: pointer;
+}
+
+.table-action-btn {
+    background: linear-gradient(90deg, #794bc4 0%, #ed6ea0 100%);
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3rem;
+}
+
+.table-action-btn:hover {
+    background: linear-gradient(90deg, #DFDCF7 0%, #242E6C 100%);
+    color: white;
+}
+
+.cancel-btn {
+    background: linear-gradient(90deg, #f85032 0%, #e73827 100%);
+    border-radius: 3rem;
+}
+
+.cancel-btn:hover, .cancel-btn:focus {
+    background: linear-gradient(90deg, #a80f00 0%, #dd452d 100%);
+    color: #fff;
+    filter: brightness(1.04) contrast(1.13);
+}
+
+
 /* --------- Service Category Field Colors --------- */
 
 .service_field {
@@ -1403,26 +1449,3 @@ pre {
     font-size: .99em;
 }
 
-.table-action-btn {
-    width: auto;
-    min-width: 90px;
-    max-width: 120px;
-    display: inline-block;
-    padding: 0.35rem 1.3rem;
-    font-size: 1.02rem;
-    margin: 0 auto;
-    border-radius: 1.1rem;
-    background: linear-gradient(90deg, #794bc4 0%, #ed6ea0 100%);
-    color: white;
-    font-weight: 600;
-    text-align: center;
-    border: none;
-    outline: none;
-    transition: background 0.2s, box-shadow 0.2s;
-    box-shadow: none;
-}
-
-.table-action-btn:hover {
-    background: linear-gradient(90deg, #DFDCF7 0%, #242E6C 100%);
-    color: white;
-}
