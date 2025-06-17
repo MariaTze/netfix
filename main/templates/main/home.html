@@ -23,22 +23,12 @@
   <section class="categories">
     <h2>Popular Categories</h2>
     <div class="category-grid">
-      <a href="{% url 'services:services_field' 'plumbing' %}" class="category-card">
-        <img src="{% static 'images/plumbing.png' %}" alt="Plumbing Icon">
-        <span>Plumbing</span>
-      </a>
-      <a href="{% url 'services:services_field' 'painting' %}" class="category-card">
-        <img src="{% static 'images/painting.png' %}" alt="Painting Icon">
-        <span>Painting</span>
-      </a>
-      <a href="{% url 'services:services_field' 'electricity' %}" class="category-card">
-        <img src="{% static 'images/electricity.png' %}" alt="Electricity Icon">
-        <span>Electricity</span>
-      </a>
-      <a href="{% url 'services:services_field' 'housekeeping' %}" class="category-card">
-        <img src="{% static 'images/housekeeping.png' %}" alt="Housekeeping Icon">
-        <span>Housekeeping</span>
-      </a>
+      {% for category in top_categories %}
+        <a href="{% url 'services:services_field' category.slug %}" class="category-card">
+          <img src="{% static 'images/'|add:category.slug|add:'.png' %}" alt="{{ category.name }} Icon">
+          <span>{{ category.name }}</span>
+        </a>
+      {% endfor %}
     </div>
   </section>
 
