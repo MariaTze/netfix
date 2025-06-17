@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Python bytecode and caches
 __pycache__/
 *.py[cod]
@@ -11,10 +10,3 @@ venv/
 # IDE/editor settings (example)
 .vscode/
 .idea/
-=======
-# Byte‐compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-.venv/
->>>>>>> 10a345d6 (ideaa)
