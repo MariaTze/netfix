@@ -6,8 +6,7 @@ from django.shortcuts import render
 from .forms import CustomerSignUpForm, CompanySignUpForm, UserLoginForm
 from .models import User, Customer, Company
 from services.models import Service, ServiceRequest
-
-# TODO: FIX DUPLICATE VIEWS
+from django.contrib import messages
 
 def register(request):
     return render(request, 'users/register.html')
@@ -24,6 +23,7 @@ class CustomerSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
+        messages.success(self.request, "Registration successful! You can now use your account.")
         login(self.request, user)
         return redirect('/')
 
@@ -39,6 +39,7 @@ class CompanySignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
+        messages.success(self.request, "Registration successful! You can now use your account.")
         login(self.request, user)
         return redirect('/')
 

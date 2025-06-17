@@ -1061,6 +1061,8 @@ pre {
   max-width: 500px;
   margin: 24px auto 10px auto;
   text-align: center;
+  z-index: 9999;
+  position: relative;
 }
 .alert-success {
   background: #d1f3d1;
