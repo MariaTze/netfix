@@ -8,4 +8,4 @@ urlpatterns = [
     path('logout/', v.logout, name='logout')
 ]
 
-handler400 = 'main.views.page_not_found'
+handler404 = 'main.views.page_not_found'
