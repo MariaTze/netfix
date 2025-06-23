@@ -4,8 +4,8 @@ from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 
-from .forms import CustomerSignUpForm, CompanySignUpForm, UserLoginForm
-from .models import User, Customer, Company
+from users.forms import CustomerSignUpForm, CompanySignUpForm, UserLoginForm
+from users.models import User, Customer, Company
 from services.models import Service, ServiceRequest
 
 def register(request):
@@ -86,3 +86,9 @@ def company_profile(request, username):
         'company': company,
         'services': services,
     })
+
+def page_not_found(request, exception):
+    # DEBUG LINE
+    # print(">>> Custom 404 view triggered")
+
+    return render(request, "errors/404.html", status=404)

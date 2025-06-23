@@ -19,7 +19,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static
+# from django.conf.urls.static import static
+from django.views.static import serve
+from django.urls import re_path
+from . import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,9 +39,16 @@ urlpatterns = [
 
 ]
 
-handler404 = 'main.views.page_not_found'
+# DEBUG LINE
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-from django.conf import settings
-from django.conf.urls.static import static
+# Static files routing (when DEBUG=False)
+if not settings.DEBUG:
+    urlpatterns += [
+        re_path(r'^static/(?P<path>.*)$', serve, kwargs={'document_root': settings.STATIC_ROOT}),
+    ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# DEBUG LINE
+# print(">>> STATIC ROUTE:", static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)) 
+
+handler404 = views.page_not_found
