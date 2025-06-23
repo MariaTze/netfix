@@ -34,11 +34,11 @@ class Service(models.Model):
 
     @property
     def avg_rating(self):
-        return self.servicerequest_set.aggregate(Avg('rating'))['rating__avg']
+        return self.requests.aggregate(Avg('rating'))['rating__avg']
 
 class ServiceRequest(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE , related_name = 'requests')
     address = models.CharField(max_length=255)
     hours = models.PositiveIntegerField()
     requested_at = models.DateTimeField(auto_now_add=True)

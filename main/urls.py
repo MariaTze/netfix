@@ -7,5 +7,3 @@ urlpatterns = [
     path('', v.home, name='home'),
     path('logout/', v.logout, name='logout')
 ]
-
-handler404 = 'main.views.page_not_found'

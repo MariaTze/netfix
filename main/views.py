@@ -28,5 +28,4 @@ def logout(request):
     return render(request, "main/logout.html")
 
 def page_not_found(request, exception):
-    print(f'404 Error: {exception}')
     return render(request, "errors/404.html", status=404)
