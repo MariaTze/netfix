@@ -21,7 +21,7 @@ class Service(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
     description = models.TextField()
-    price_per_hour = models.DecimalField(decimal_places=2, max_digits=7)
+    price_per_hour = models.DecimalField(decimal_places=2, max_digits=6)
     rating = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)],
         default=0

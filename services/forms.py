@@ -6,7 +6,7 @@ class CreateNewService(forms.Form):
     name = forms.CharField(max_length=40)
     description = forms.CharField(widget=forms.Textarea, label='Description')
     price_per_hour = forms.DecimalField(
-        decimal_places=2, max_digits=7, min_value=0.00)
+        decimal_places=2, max_digits=6, min_value=0.00, max_value=9999.99 )
     field = forms.ChoiceField(required=True)
 
     def __init__(self, *args, company=None, **kwargs):
