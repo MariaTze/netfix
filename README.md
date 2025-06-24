@@ -124,7 +124,6 @@ python manage.py runserver
 netfix/
 │
 ├── manage.py
-├── requirements.txt
 ├── db.sqlite3
 ├── static/
 │   ├── css/

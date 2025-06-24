@@ -19,7 +19,7 @@ def service_list(request):
 def most_requested_services(request):
     services = Service.objects.annotate(
         num_requests=Count('requests')
-    ).filter(num_requests__gte=3).order_by('-num_requests', '-date_created')
+    ).filter(num_requests__gte=2).order_by('-num_requests', '-date_created')
     return render(request, 'services/most_requested.html', {'services': services})
 
 def index(request, id):
