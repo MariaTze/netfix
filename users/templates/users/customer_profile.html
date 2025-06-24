@@ -3,6 +3,10 @@
 {% block title %}Customer Profile{% endblock %}
 
 {% block content %}
+    <div class="profile-banner">
+        <img src="{% static 'images/customer.png' %}" alt="Customer" style="height:2.3rem;vertical-align:middle;margin-right:0.7rem;">
+        Customer Profile
+    </div>
 <div class="profile-container">
     <div class="profile-card">
         <form id="profile-form" method="post" autocomplete="off">

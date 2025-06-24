@@ -767,26 +767,40 @@ input[type="text"]:focus, input[type="number"]:focus {
 .service_card_bottom {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin-top: 2.2rem;
     font-size: 1.04rem;
-    color: #7748b1;
+    color: #1a1a1a;
+    gap: 2.2rem;
+    width: 100%;
 }
 
 .service_price {
     background: #fcf6ff;
     border-radius: .6rem;
-    padding: .2rem 1rem;
+    padding: .1rem 0.5rem;
     font-weight: 700;
     color: #985edb;
     font-size: 1.09rem;
 }
 
-.service_company a {
-    color: #794bc4;
-    font-weight: 600;
+.service_meta_wrap {
+    text-align: right;
+}
+
+.service-date {
+    color: #1a1a1a;
+}
+
+.company-link {
+    color: #7748b1;
+    font-weight: bold;
     text-decoration: none;
 }
+.company-link:hover {
+    text-decoration: underline;
+}
+
 
 .service_details_btn, .request-btn {
     background: linear-gradient(90deg, #794bc4 0%, #ed6ea0 100%);
@@ -1333,6 +1347,31 @@ pre {
 .profile-card select:focus {
   border-color: #ed6ea0;
 }
+
+.profile-banner {
+    width: 100%;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 1.2rem;
+    box-shadow: 0 2px 10px rgba(120,80,200,0.07);
+    letter-spacing: 0.03em;
+}
+
+.customer-banner {
+    background: linear-gradient(90deg, #f7e3ff 0%, #e0f7fa 100%);
+    color: #7d40b9;
+    border: 2px solid #c088f5;
+}
+
+.company-banner {
+    background: linear-gradient(90deg, #e0f7fa 0%, #f7e3ff 100%);
+    color: #188090;
+    border: 2px solid #6fd2e7;
+}
+
 
 .edit-btn,
 .save-btn {
