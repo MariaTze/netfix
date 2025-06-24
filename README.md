@@ -64,7 +64,8 @@ git clone https://github.com/YOUR-USERNAME/netfix.git
 cd netfix
 ```
 
-### 2. Set up a virtual environment
+### 2. Set up a virtual environment 
+##### (Note: You must have python3 or higher)
 
 ```bash
 python3 -m venv .venv
