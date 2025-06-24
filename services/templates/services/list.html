@@ -39,13 +39,15 @@
                 <p class="service_desc">{{ service.description|truncatechars:100 }}</p>
                 <div class="service_card_bottom">
                     <span class="service_price">{{ service.price_per_hour }}€/hour</span>
-                    <span class="service_company">
-                        by
-                        <a href="{% url 'users:company_profile' service.company.user %}">
-                            {{ service.company.user }}
+                    <div class="service_meta_wrap" style="margin-left: 2rem; color: #242E6C;">
+                        Created by
+                        <a href="{% url 'users:company_profile' service.company.user %}" class="company-link">
+                            <b>{{ service.company.user }}</b>
                         </a>
-                    </span>
+                        <div class="service-date">{{ service.date_created|date:"d/m/Y" }}</div>
+                    </div>
                 </div>
+
                 <a href="{% url 'services:index' service.id %}" class="service_details_btn">View Details</a>
             </div>
         {% endfor %}

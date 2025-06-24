@@ -19,12 +19,13 @@
                     <div class="service_card_bottom">
                         <span class="service_price">{{ service.price_per_hour }}€/hour</span>
                         <span class="service_company">
-                            by
-                            <a href="{% url 'users:company_profile' service.company.user %}">
-                                {{ service.company.user }}
-                            </a>
+                                by
+                                <a href="{% url 'users:company_profile' service.company.user %}">
+                                    {{ service.company.user }}
+                                </a>
                         </span>
                     </div>
+
                     <a href="{% url 'services:index' service.id %}" class="service_details_btn">View Details</a>
                 </div>
             {% endfor %}

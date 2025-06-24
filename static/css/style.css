@@ -767,26 +767,40 @@ input[type="text"]:focus, input[type="number"]:focus {
 .service_card_bottom {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin-top: 2.2rem;
     font-size: 1.04rem;
-    color: #7748b1;
+    color: #1a1a1a;
+    gap: 2.2rem;
+    width: 100%;
 }
 
 .service_price {
     background: #fcf6ff;
     border-radius: .6rem;
-    padding: .2rem 1rem;
+    padding: .1rem 0.5rem;
     font-weight: 700;
     color: #985edb;
     font-size: 1.09rem;
 }
 
-.service_company a {
-    color: #794bc4;
-    font-weight: 600;
+.service_meta_wrap {
+    text-align: right;
+}
+
+.service-date {
+    color: #1a1a1a;
+}
+
+.company-link {
+    color: #7748b1;
+    font-weight: bold;
     text-decoration: none;
 }
+.company-link:hover {
+    text-decoration: underline;
+}
+
 
 .service_details_btn, .request-btn {
     background: linear-gradient(90deg, #794bc4 0%, #ed6ea0 100%);
