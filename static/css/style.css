@@ -553,11 +553,10 @@ body {
 
 .user-form input,
 .user-form select {
-    width: 95%;
+    width: 90%;
     margin-bottom: 0.8rem;
     padding: 0.75rem 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 1rem;
     background: var(--color-white);
     color: var(--color-text);
     font-size: 1rem;
@@ -609,13 +608,12 @@ body {
 
 input[type="text"], input[type="number"] {
     padding: .6rem 1.1rem;
-    border-radius: .9rem;
-    border: 1.5px solid #ecd7f7;
+    border-radius: 1rem;
     background: #faf7ff;
     font-size: 1.05rem;
     margin-top: .5rem;
     margin-bottom: .3rem;
-    width: 80%;
+    width: 87%;
     display: block;
     margin-left: 0;
     margin-right: 0;
